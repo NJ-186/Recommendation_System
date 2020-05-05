@@ -52,11 +52,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'recommend.urls'
 
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates'),
-)
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
