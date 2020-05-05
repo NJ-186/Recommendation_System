@@ -25,7 +25,7 @@ SECRET_KEY = '^p2^%@t9kfv0zslh!gd(v%xwx6_=zcm!xtk7dtuf-25+l$!#q='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sirkikripa.herokuapp.com']
+ALLOWED_HOSTS = ['sirkikripa.herokuapp.com','localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'recommend.urls'
+
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'templates'),
+)
+
 
 TEMPLATES = [
     {
@@ -68,7 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'recommend.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
