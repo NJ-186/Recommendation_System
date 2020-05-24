@@ -25,7 +25,7 @@ SECRET_KEY = '^p2^%@t9kfv0zslh!gd(v%xwx6_=zcm!xtk7dtuf-25+l$!#q='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['advicewise.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['advicewise.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'main',
+    'register',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'recommend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +70,10 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+
 
 WSGI_APPLICATION = 'recommend.wsgi.application'
 
