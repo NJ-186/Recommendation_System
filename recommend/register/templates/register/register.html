@@ -1,24 +1,74 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Register</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/register/main.css' %}">
-  </head>
-  <body>
-    <div class="form-main">
-      <div class="">Login Form</div>
-      <form action="" method="post">
-         {% csrf_token %}
-         <div class="inputfield">
-           {{ form.name}}
-         </div>
-        <div class="inputfield">
-          {{form.email}}
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+  <div class="main" style="background-image: linear-gradient(45deg,#403B4A,#E7E9BB);">
+    <div class="container">
+      <div class="row" >
+          <div class="col-lg-5 ml-auto mr-auto" style="margin-top:20%;margin-bottom:30%">
+            <ul class="tabgroup">
+              <li class="tab active" id="login">Login</li>
+              <li class="tab" id="register">Register</li>
+            </ul>
+              <div class="card card-register" id="loginform"  style="margin-top:0px;">
+                  <h3 class="title mx-auto" style="color:white">Login</h3>
+                    <form class="register-form" id="login-form" action="" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="context" value="login" id="myhiddenInput">
+                      <div class="input-group">{{form_login.loginemail}}</div>
+                      <span class="errorspan" id="lemailerror"></span>
+                      <div class="input-group">{{form_login.password}}</div>
+                      <span class="errorspan" id="passworderror"></span>
+                      <button id="loginbtn" class="btn btn-danger btn-block btn-round">Login</button>
+                    </form>
+                    <div class="forgot">
+                        <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                    </div>
+                    <div class="social-line text-center">
+                        <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                          <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            <div class="card card-register" id="registerform" style="margin-top:0px;display:none">
+                <h3 class="title mx-auto" style="color:white">Register</h3>
+                <form class="registerform" id="register-form" method="Post">
+                  {% csrf_token %}
+                  <div class="input-group" >{{form_register.name}}</div>
+                  <span id="nameerror" class="errorspan"></span>
+                  <div class="input-group">{{form_register.registeremail}}</div>
+                  <span id="remailerror" class="errorspan"></span>
+                  <div class="input-group">{{form_register.password1}}</div>
+                  <span id="password1error" class="errorspan"></span>
+                  <div class="input-group">{{form_register.password2}}</div>
+                  <span id="password2error" class="errorspan"></span>
+                  <input type="hidden" name="context" value="register" id="myhiddenInput">
+                  <ul id="errors"></ul>
+                  <button id="registerbtn" class="btn btn-block btn-round btn-danger" >Register</button>
+                </form>
+                <div class="forgot">
+                  <a href="#" class="btn btn-link btn-danger" >Forgot password?</a>
+                </div>
+                <div class="social-line text-center">
+                  <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                    <i class="fa fa-facebook-square"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </div>
+              </div>
+          </div>
         </div>
-        <button type="submit" name="button">Submit</button>
-      </form>
+      </div>
     </div>
-  </body>
-</html>
+{%endblock%}

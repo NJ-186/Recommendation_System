@@ -3,20 +3,38 @@ from django import forms
 # Create your views here.
 from django.http import HttpResponse
 
-
-
-class NameForm(forms.Form):
-    name=forms.CharField(label="Your name",max_length=100)
-    email=forms.EmailField(label="Enter your Email")
+from .forms import LoginForm,RegisterForm
 
 
 def register(request):
+    context="login"
+    login_form=LoginForm()
+    register_form=RegisterForm()
     if request.method=='POST':
-        form=NameForm(request.POST)
-        if form.is_valid():
-            return HttpResponse("Submitted successfully")
+        isValid=False
+        print(request.POST.get("context"))
+        if request.POST.get("context")== "login":
+            login_form,isValid=handleLogin(request)
         else:
-            return HttpResponse("Not submitted")
-    else:
-        form=NameForm()
-    return render(request,'register/register.html',{'form':form})
+            register_form,isValid=handleRegister(request)
+        if isValid:
+            return HttpResponse("Submitted successfully")
+    return render(request,'register/register.html',{'form_login':login_form,'form_register':register_form})
+
+
+
+def handleLogin(request):
+    result=LoginForm(data=request.POST)
+    if result.is_valid():
+        return (result,True)
+    return (result,False)
+
+
+
+
+def handleRegister(request):
+    result=RegisterForm(data=request.POST)
+    if result.is_valid():
+        return (result,True)
+    print(result.errors)
+    return (result,False)
