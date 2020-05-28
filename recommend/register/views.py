@@ -21,7 +21,7 @@ def register(request):
         if request.POST.get("context")== "login":
             login_form,isValid=handleLogin(request)
             if isValid:
-                return HttpResponse("successfully logged in")
+                return redirect('/')
         else:
             register_form,isValid=handleRegister(request)
             if isValid:
@@ -85,7 +85,7 @@ def check(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponse("Logout successfull")
+    return redirect('/')
 
 
 
@@ -111,7 +111,7 @@ def send_mail(link,email):
     res = sm(
         subject = 'This is the verification code sent',
         message = f'you asked for this {link}',
-        from_email = 'helloworld123world@yandex.co',
+        from_email = 'helloworld123world@yandex.com',
         recipient_list = [ email,],
         fail_silently=False,
     )
