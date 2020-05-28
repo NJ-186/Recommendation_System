@@ -128,7 +128,7 @@ USE_TZ = True
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'helloworld123world'
+EMAIL_HOST_USER = 'helloworld123world@yandex.com'
 EMAIL_HOST_PASSWORD = 'helloworld'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
