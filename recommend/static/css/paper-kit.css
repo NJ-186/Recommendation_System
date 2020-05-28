@@ -25,6 +25,17 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+
+ul.errorlist
+{
+  color:yellow;
+  list-style: none;
+  padding:10px;
+}
+html, body {
+    height: 100%;
+}
+
 .errorspan
 {
   color:yellow;
@@ -5871,6 +5882,7 @@ License - nucleoapp.com/license/
 .footer {
   background-color: #FFFFFF;
   line-height: 36px;
+  margin-top:-85px;
 }
 
 .footer.footer-black h4 {

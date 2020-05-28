@@ -32,7 +32,8 @@ $(function() {
     },
     messages:{
       password:{
-        minlength:"The length should be 8 minimum"
+        minlength:"The password should be of minimum 8 characters",
+        required:'The Field is required',
       },
       loginemail:{
         email:'Enter the correct email type local@example.com',
@@ -50,20 +51,60 @@ $(function() {
   }
   })
 
-
-
   $('#register-form').validate({
     // Specify validation rules
     rules: {
-      password1:{
-        minlength:10,
+      name:{
+        minlength:3,
+        remote:{
+          url:'/register/check/',
+          method:'GET',
+          data:{
+            name:function(){return $('#id_name').val()},
+            type:'username',
+          }
+        }
       },
+      registeremail:
+      {
+        remote:{
+          url:"/register/check/",
+          method:'GET',
+          data:{
+            email:function(){return $('#id_registeremail').val()},
+            type:"mail",
+          }
+        },
+        email:true,
+        required:true,
+      },
+      password1:
+      {
+        required:true,
+        minlength:8,
+      },
+      password2:
+      {
+        equalTo:'#id_password1'
+      }
     },
     // Specify validation error messages
     messages: {
-      registeremail:'min length should be 20',
+      name:{
+        remote:'A user with this name already exist',
+      },
+      registeremail:
+      {
+        remote:"Email Address already exist",
+        email:"Enter the correct Email Type",
+        required:"This Field is Required"
+      },
       password1:{
         minlength:"The length is short",
+      },
+      password2:
+      {
+        equalTo:'Confirmation and password should match'
       }
     },
       errorPlacement: function(error, element) {
