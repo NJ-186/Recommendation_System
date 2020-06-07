@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="main" style="background-image:url('{% static 'img/music.jpg' %}');background-repeat:no-repeat;background-size:cover;min-height:100%">
+  <div class="container" style="color:white;">
+    <div class="row" >
+      <div class="col" style="margin-top:15%">
+        <h1 style="margin-left:40%">Music</h1>
+        <div style="margin-left:15%">
+          <h3 style="margin-left:20%">Select at least 5 music titles</h3>
+          <input class="shadow-lg" id="autocomplete_music" style="width:85%;border:0px;border-radius:10px;height:50px;font-size:2rem;margin-top:5%">
+          <br>
+          <div class="btn btn-secondary" style="margin-left:35%;margin-top:5%" id='addmusicbtn'>Add</div>
+        </div>
+        <div class="result-area" id="musicresult" style="overflow:scroll;height:300px;width:90%;background-color:white;margin-top:30px;margin-left:5%">
+        </div>
+        <a href="#result"><button class='btn btn-primary disabled' id="musicbtn" style="margin-left:42%;margin-top:20px">Search</button></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="margin-bottom:20%;margin-top:10%">
+        <div id="result" style="display:none">
+          <div class="spinner-border text-primary spinner-border-lg"  style="margin-left:42%"></div>
+          <div style="margin-left:30%;margin-top:5%;font-size:1.3rem">Fetching your Result Please Wait</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
