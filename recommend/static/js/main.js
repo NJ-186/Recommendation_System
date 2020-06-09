@@ -159,23 +159,71 @@ $('#autocomplete_book').autocomplete({
 }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //functions for movies functionality
+movieresultarr=[];
+
+
+$('#addmoviebtn').on('click',function(){
+  let result=$('#autocomplete_movie').val()
+  $('#autocomplete_movie').val('')
+  if($.inArray(result, moviesource)>=0&&($.inArray(result, movieresultarr)==-1))
+  {
+    movieresultarr.push(result)
+    $('#movieresult').append('<div class="searchitem" style="padding:2px;"><i style="color:black;margin-left:10px;margin-right:10px" class="fa fa-close"></i><span>'+result+'</span>')
+    if($('#movieresult div').length>=5)
+    {
+      $('#moviebtn').removeClass('disabled')
+    }
+  }
+})
+
+$('#movieresult').on('click','i.fa',function(){
+  index=movieresultarr.indexOf($(this).next().text())
+  movieresultarr.splice(index,1);
+  $(this).parent().remove()
+})
+
+
+moviesource=[
+  '“Tum Dil Ki Dhadkan Mein” Dhadkan (2000)"',
+'“Hum To Dil Se Haare” Josh (2000)',
+'“Morey Piya” Devdas (2002)',
+'“Silsila Ye Chaahat Ka” Devdas (2002)',
+'“Bairi Piya” Devdas (2002)',
+'“Ankh Hai Bhari Bhari” Tum Se Achcha Kaun Hai (2002)',
+'“Kaahe Chhed Mohe” Devdas (2002)',
+'“Hamesha Tumko Chaha” Devdas (2002)',
+'“Jaadu Hai Nasha Hai” Jism (2002)',
+'“Kasam Ki Kasam” Main Prem Ki Diwani Hoon (2003)',
+'“Mujhe Haq Hai” Vivah (2006)',
+'“Do Anjaane Ajnabi” Vivah (2006)',
+'“Milan Abhi Aadha Adhura” Vivah (2006)',
+'“Tum Se Hi” Jab We Met (2007)',
+'“Lahu Munh Lag Gaya” Goliyon Ki Rasleela Ram-Leela (2013)',
+'“Laal Ishq” Goliyon Ki Raasleela Ram-Leela (2013)',
+'“Galliyan” Ek Villain (2014)',
+'Aaj Ibaadat” Bajirao Mastani (2015)',
+'“Mohe Rang Do Laal” Bajirao Mastani (2015)',
+'“Aayat” Bajirao Mastani (2015)',
+'“Jeeta Tha Jiske Liye” Dilw ale (2015)',
+'“Jaadu Teri Nazar” Darr (2015)',
+'“Mera Dil Bhi Kitna Paagal Hai” Saajan (2016)',
+'“Bahut Pyaar Karte Hai” Saajan (2016)',
+'“Aitbaar Nahi Karna” Qayamat: City Under Threat (2016)',
+]
+
+
+
+$('#autocomplete_movie').autocomplete({
+  source: function(request, response) {
+     var results = $.ui.autocomplete.filter(moviesource, request.term);
+     response(results.slice(0, 5));
+ },
+  classes: {
+  "ui-autocomplete": "highlight"
+}
+});
+
 
 
 

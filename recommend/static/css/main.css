@@ -3,3 +3,19 @@
   color:red !important;
   font-size:1.3rem;
 }
+@media only screen and (max-width: 600px) {
+  #autocomplete_book {
+    font-size:1rem !important;
+  }
+  #autocomplete_music {
+    font-size:1rem !important;
+  }
+  #musicresult
+  {
+    font-size:1rem !important;
+  }
+  #bookresult
+  {
+    font-size:1rem !important;
+  }
+}
